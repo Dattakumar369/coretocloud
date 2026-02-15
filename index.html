@@ -4,31 +4,41 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CoreToCloud - Master Java from Core to Cloud</title>
-    <meta name="description" content="CoreToCloud: Your complete journey from Core Java fundamentals to cloud-ready full-stack development. Learn Java, Servlets, JSP, JDBC with interactive tutorials and live code execution." />
+    <title>LearnStackHub - Master Java Full Stack Development</title>
+    <meta name="description" content="LearnStackHub: Your complete journey from Core Java fundamentals to cloud-ready full-stack development. Learn Java, Servlets, JSP, JDBC with interactive tutorials and live code execution." />
     <meta name="keywords" content="Java, Java Tutorial, Spring Boot, React, Full Stack, Programming, Learn Java" />
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    
+    <!-- Google AdSense -->
+    <!-- Update the client ID in src/config/adsense.js after AdSense approval -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="root"></div>
     <script>
       // Single Page Apps for GitHub Pages
-      // This script restores the original URL from the query string
-      // so React Router can handle the route correctly
-      (function(l) {
-        if (l.search[1] === '/') {
-          var basePath = '/coretocloud';
-          // Decode the path from query string
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&');
-          }).join('?');
-          // Restore the full path: /coretocloud/tutorial/java-introduction
-          var restoredPath = basePath + decoded;
-          window.history.replaceState(null, null, restoredPath + l.hash);
+      // Restore the original URL from query parameter so React Router works correctly
+      (function() {
+        var l = window.location;
+        var params = new URLSearchParams(l.search);
+        var pathParam = params.get('p');
+        
+        if (pathParam) {
+          var basePath = '/learnstackhub';
+          var restoredPath = basePath + (pathParam.startsWith('/') ? pathParam : '/' + pathParam);
+          
+          // Remove the 'p' parameter from URL
+          params.delete('p');
+          var newSearch = params.toString();
+          var newUrl = restoredPath + (newSearch ? '?' + newSearch : '') + l.hash;
+          
+          // Restore the URL without reloading
+          window.history.replaceState(null, null, newUrl);
         }
-      }(window.location))
+      })();
     </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>

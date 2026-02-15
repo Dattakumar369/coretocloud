@@ -6,6 +6,8 @@ import { useAuth } from '../context/AuthContext';
 import { useContributions } from '../context/ContributionContext';
 import LoginModal from './LoginModal';
 import ContributeModal from './ContributeModal';
+import AdSense from './AdSense';
+import { ADSENSE_CONFIG } from '../config/adsense';
 
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -87,7 +89,7 @@ function Layout() {
   return (
     <div className="app-layout">
       {/* Header */}
-      <header className="header">
+      <header className="header" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000 }}>
         <div className="header-left">
           <button 
             className="mobile-menu-btn"
@@ -97,8 +99,8 @@ function Layout() {
           </button>
           
           <Link to="/" className="logo">
-            <div className="logo-icon">☁️</div>
-            <span>CoreToCloud</span>
+            <div className="logo-icon">📚</div>
+            <span>LearnStackHub</span>
           </Link>
 
           {/* Course Navigation in Header - Like W3Schools */}
@@ -240,12 +242,42 @@ function Layout() {
             ))}
           </div>
         )}
+
+        {/* Sidebar Ad */}
+        <div className="sidebar-ad">
+          <AdSense 
+            adSlot={ADSENSE_CONFIG.adSlots.sidebar}
+            adFormat="rectangle"
+            className="sidebar-ad-unit"
+            style={{ margin: '1rem', minHeight: '250px' }}
+          />
+        </div>
       </aside>
+
+      {/* Top Banner Ad */}
+      <div className="top-banner-ad">
+        <AdSense 
+          adSlot={ADSENSE_CONFIG.adSlots.topBanner}
+          adFormat="horizontal"
+          className="banner-ad-unit"
+          style={{ margin: '1rem auto', maxWidth: '728px', minHeight: '90px' }}
+        />
+      </div>
 
       {/* Main Content */}
       <main className="main-content">
         <Outlet />
       </main>
+
+      {/* Bottom Banner Ad */}
+      <div className="bottom-banner-ad">
+        <AdSense 
+          adSlot={ADSENSE_CONFIG.adSlots.bottomBanner}
+          adFormat="horizontal"
+          className="banner-ad-unit"
+          style={{ margin: '1rem auto', maxWidth: '728px', minHeight: '90px' }}
+        />
+      </div>
 
       {/* Overlay for mobile */}
       {sidebarOpen && (
@@ -270,6 +302,51 @@ function Layout() {
           onClick={() => setSearchQuery('')}
         />
       )}
+
+      {/* Footer */}
+      <footer className="site-footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>LearnStackHub</h3>
+            <p>Your complete journey from Core Java to Cloud-Ready Full-Stack Development</p>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Learn</h4>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/tutorial/java-introduction">Core Java</Link></li>
+              <li><Link to="/tutorial/jdbc-introduction">JDBC</Link></li>
+              <li><Link to="/tutorial/servlet-introduction">Servlets</Link></li>
+              <li><Link to="/tutorial/jsp-introduction">JSP</Link></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><a href="https://github.com/Dattakumar369/learnstackhub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Legal</h4>
+            <ul>
+              <li><Link to="/privacy">Privacy Policy</Link></li>
+              <li><Link to="/terms">Terms of Service</Link></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} LearnStackHub. All rights reserved.</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+            Made with ☁️ for developers worldwide
+          </p>
+        </div>
+      </footer>
 
       {/* Modals */}
       <LoginModal />

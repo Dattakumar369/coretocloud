@@ -7,7 +7,7 @@ export function ContributionProvider({ children }) {
 
   // Load contributions from localStorage on mount
   useEffect(() => {
-    const savedContributions = localStorage.getItem('coretocloud_contributions');
+    const savedContributions = localStorage.getItem('learnstackhub_contributions');
     if (savedContributions) {
       try {
         setContributions(JSON.parse(savedContributions));
@@ -20,7 +20,7 @@ export function ContributionProvider({ children }) {
 
   // Save contributions to localStorage
   const saveContributions = (newContributions) => {
-    localStorage.setItem('coretocloud_contributions', JSON.stringify(newContributions));
+    localStorage.setItem('learnstackhub_contributions', JSON.stringify(newContributions));
     setContributions(newContributions);
   };
 
@@ -113,7 +113,7 @@ export function ContributionProvider({ children }) {
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `coretocloud-contributions-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `learnstackhub-contributions-${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };

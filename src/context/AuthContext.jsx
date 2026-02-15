@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
 
   // Load user from session storage on mount
   useEffect(() => {
-    const savedUser = sessionStorage.getItem('coretocloud_user');
+    const savedUser = sessionStorage.getItem('learnstackhub_user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
       loginTime: new Date().toISOString()
     };
     setUser(userData);
-    sessionStorage.setItem('coretocloud_user', JSON.stringify(userData));
+    sessionStorage.setItem('learnstackhub_user', JSON.stringify(userData));
     setIsLoginModalOpen(false);
     return userData;
   };
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
   // Logout
   const logout = () => {
     setUser(null);
-    sessionStorage.removeItem('coretocloud_user');
+    sessionStorage.removeItem('learnstackhub_user');
   };
 
   // Check if user is logged in

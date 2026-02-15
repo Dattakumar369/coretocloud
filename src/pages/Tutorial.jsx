@@ -26,6 +26,8 @@ import { useAuth } from '../context/AuthContext';
 import { useContributions } from '../context/ContributionContext';
 import ContributeModal from '../components/ContributeModal';
 import ContributorBadge from '../components/ContributorBadge';
+import AdSense from '../components/AdSense';
+import { ADSENSE_CONFIG } from '../config/adsense';
 import { HierarchyDiagram, ConceptCube, ProcessCards, CodeFlowAnimation } from '../components/Diagram';
 import { ImageGif, ImageCard3D } from '../components/ImageGif';
 
@@ -354,6 +356,16 @@ function Tutorial() {
         <ContributorBadge contribution={contribution} />
       )}
 
+      {/* In-Content Ad - Top */}
+      <div className="in-content-ad-top">
+        <AdSense 
+          adSlot={ADSENSE_CONFIG.adSlots.inContentTop}
+          adFormat="horizontal"
+          className="in-content-ad-unit"
+          style={{ margin: '2rem auto', maxWidth: '728px', minHeight: '90px' }}
+        />
+      </div>
+
       {/* Content */}
       <div className="tutorial-content">
         {renderContent(currentTopic.content)}
@@ -465,6 +477,16 @@ function Tutorial() {
           ))}
         </div>
       )}
+
+      {/* In-Content Ad - Bottom */}
+      <div className="in-content-ad-bottom">
+        <AdSense 
+          adSlot={ADSENSE_CONFIG.adSlots.inContentBottom}
+          adFormat="horizontal"
+          className="in-content-ad-unit"
+          style={{ margin: '2rem auto', maxWidth: '728px', minHeight: '90px' }}
+        />
+      </div>
 
       {/* Navigation */}
       <div className="tutorial-navigation">

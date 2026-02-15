@@ -42,12 +42,12 @@ function Home() {
       <section className="hero-section fade-in">
         <div className="hero-badge">
           <Zap size={16} />
-          <span>☁️ Free Cloud-Ready Java Course</span>
+          <span>📚 Free Java Full Stack Course</span>
         </div>
         
         <h1 className="hero-title">
-          From <span className="highlight">Core</span> to
-          <br />Cloud ☁️
+          Learn <span className="highlight">Java</span> Full
+          <br />Stack Development 📚
         </h1>
         
         <p className="hero-subtitle">
@@ -245,7 +245,7 @@ function Home() {
         color: 'white'
       }}>
         <h2 style={{ marginBottom: '1rem', color: 'white', fontSize: '2rem' }}>
-          ☁️ Ready to Scale from Core to Cloud?
+          📚 Ready to Master Java Full Stack?
         </h2>
         <p style={{ 
           color: 'rgba(255,255,255,0.9)', 
@@ -255,7 +255,7 @@ function Home() {
           fontSize: '1.1rem'
         }}>
           Join thousands of developers mastering Java from fundamentals to cloud deployment. 
-          Start your CoreToCloud journey today - it's completely free!
+          Start your LearnStackHub journey today - it's completely free!
         </p>
         <Link to="/tutorial/java-introduction" className="btn btn-primary" style={{
           background: 'white',
@@ -267,6 +267,117 @@ function Home() {
           Start Learning Now
           <ArrowRight size={20} />
         </Link>
+      </section>
+
+      {/* Quick Links Section */}
+      <section style={{
+        padding: '2rem',
+        background: 'var(--bg-card)',
+        border: '1px solid var(--border-color)',
+        borderRadius: '20px',
+        marginBottom: '2rem'
+      }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Quick Links</h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '1rem',
+          maxWidth: '800px',
+          margin: '0 auto'
+        }}>
+          <Link to="/about" style={{
+            padding: '1rem',
+            background: 'var(--bg-tertiary)',
+            borderRadius: '12px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            color: 'var(--text-primary)',
+            fontWeight: '600',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.color = 'white';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'var(--bg-tertiary)';
+            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          >
+            About Us
+          </Link>
+          <Link to="/contact" style={{
+            padding: '1rem',
+            background: 'var(--bg-tertiary)',
+            borderRadius: '12px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            color: 'var(--text-primary)',
+            fontWeight: '600',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.color = 'white';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'var(--bg-tertiary)';
+            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          >
+            Contact
+          </Link>
+          <Link to="/privacy" style={{
+            padding: '1rem',
+            background: 'var(--bg-tertiary)',
+            borderRadius: '12px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            color: 'var(--text-primary)',
+            fontWeight: '600',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.color = 'white';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'var(--bg-tertiary)';
+            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          >
+            Privacy Policy
+          </Link>
+          <Link to="/terms" style={{
+            padding: '1rem',
+            background: 'var(--bg-tertiary)',
+            borderRadius: '12px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            color: 'var(--text-primary)',
+            fontWeight: '600',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.color = 'white';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'var(--bg-tertiary)';
+            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          >
+            Terms of Service
+          </Link>
+        </div>
       </section>
     </div>
   );
