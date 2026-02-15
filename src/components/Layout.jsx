@@ -114,21 +114,6 @@ function Layout() {
             <img src={logoImage} alt="LearnStackHub Logo" className="logo-image" />
             <span>LearnStackHub</span>
           </Link>
-
-          {/* Course Navigation in Header - Like W3Schools */}
-          <nav className="course-nav">
-            {Object.entries(courseStructure).map(([courseKey, course]) => (
-              <button
-                key={courseKey}
-                className={`course-nav-btn ${activeCourse === courseKey ? 'active' : ''}`}
-                onClick={() => handleCourseSelect(courseKey)}
-                style={{ '--course-color': course.color }}
-              >
-                <span className="course-nav-icon">{course.icon}</span>
-                <span className="course-nav-title">{course.title}</span>
-              </button>
-            ))}
-          </nav>
         </div>
 
         <div className="header-right">
@@ -207,7 +192,30 @@ function Layout() {
         </div>
       </header>
 
-      {/* Sidebar - W3Schools Style */}
+      {/* Main Topics Navigation Bar - Shows main courses */}
+      <nav className="main-topics-nav-bar">
+        <div className="main-topics-container">
+          {Object.entries(courseStructure).map(([courseKey, course]) => {
+            const firstTopic = Object.values(course.sections)[0]?.topics[0];
+            return (
+              <Link
+                key={courseKey}
+                to={firstTopic ? `/tutorial/${firstTopic.id}` : '/'}
+                className={`main-topic-link ${activeCourse === courseKey ? 'active' : ''}`}
+                onClick={() => {
+                  setActiveCourse(courseKey);
+                  setSidebarOpen(false);
+                }}
+              >
+                <span className="main-topic-icon">{course.icon}</span>
+                <span className="main-topic-name">{course.title}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
+
+      {/* Sidebar - Toggleable on mobile */}
       <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         {/* Course Title Header */}
         <div className="sidebar-header" style={{ '--course-color': currentCourse?.color }}>
@@ -291,13 +299,6 @@ function Layout() {
         />
       </div>
 
-      {/* Overlay for mobile */}
-      {sidebarOpen && (
-        <div 
-          className="sidebar-overlay"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
 
       {/* Click outside to close user menu */}
       {showUserMenu && (
@@ -312,6 +313,14 @@ function Layout() {
         <div 
           className="search-overlay"
           onClick={() => setSearchQuery('')}
+        />
+      )}
+
+      {/* Overlay for mobile sidebar */}
+      {sidebarOpen && (
+        <div 
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
         />
       )}
 

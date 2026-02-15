@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getAllTopics, getTopicById } from '../data';
+import { generateSEOTitle, generateSEODescription, generateSEOKeywords } from '../utils/seoHelpers';
 
 function SEOHead({ title, description, keywords, topicId }) {
   const location = useLocation();
@@ -9,17 +10,18 @@ function SEOHead({ title, description, keywords, topicId }) {
   useEffect(() => {
     // Get topic data if topicId is provided
     let pageTitle = title || 'LearnStackHub - Master Java Full Stack Development';
-    let pageDescription = description || 'LearnStackHub: Your complete journey from Core Java fundamentals to cloud-ready full-stack development. Learn Java, Servlets, JSP, JDBC with interactive tutorials and live code execution.';
-    let pageKeywords = keywords || 'Java, Java Tutorial, Spring Boot, React, Full Stack, Programming, Learn Java';
+    let pageDescription = description || 'LearnStackHub: Your complete journey from Core Java fundamentals to cloud-ready full-stack development. Learn Java, Servlets, JSP, JDBC, Hibernate, MySQL with interactive tutorials and live code execution.';
+    let pageKeywords = keywords || 'Java, Java Tutorial, Spring Boot, React, Full Stack, Programming, Learn Java, JDBC, Servlets, JSP, Hibernate, MySQL';
     let pageUrl = baseUrl + location.pathname;
-    let pageImage = baseUrl + '/og-image.png'; // You can add this later
+    let pageImage = baseUrl + '/LSH.png';
 
     if (topicId) {
       const topic = getTopicById(topicId);
       if (topic) {
-        pageTitle = `${topic.title} - LearnStackHub`;
-        pageDescription = topic.description || `Learn ${topic.title} with step-by-step tutorials, code examples, and interactive exercises. Master Java Full Stack Development with LearnStackHub.`;
-        pageKeywords = `${topic.title}, Java, ${topic.courseTitle}, Tutorial, LearnStackHub`;
+        // Use SEO helper functions for better titles and descriptions
+        pageTitle = generateSEOTitle(topic);
+        pageDescription = description || generateSEODescription(topic);
+        pageKeywords = keywords || generateSEOKeywords(topic);
       }
     }
 

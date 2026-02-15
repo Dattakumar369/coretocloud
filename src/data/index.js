@@ -1,6 +1,33 @@
 // Course Structure - Main Index
 // Each topic is in its own file for better organization
 
+// HTML
+import htmlIntroduction from './html/HtmlIntroduction';
+import htmlStructure from './html/HtmlStructure';
+import htmlLinks from './html/HtmlLinks';
+import htmlImages from './html/HtmlImages';
+import htmlLists from './html/HtmlLists';
+import htmlTables from './html/HtmlTables';
+import htmlForms from './html/HtmlForms';
+import htmlSemanticElements from './html/HtmlSemanticElements';
+import htmlMedia from './html/HtmlMedia';
+import htmlIframe from './html/HtmlIframe';
+import htmlMarquee from './html/HtmlMarquee';
+import htmlDOM from './html/HtmlDOM';
+import htmlBestPractices from './html/HtmlBestPractices';
+
+// CSS
+import cssIntroduction from './css/CssIntroduction';
+import cssSelectors from './css/CssSelectors';
+import cssColorsBackgrounds from './css/CssColorsBackgrounds';
+import cssBoxModel from './css/CssBoxModel';
+import cssTextFonts from './css/CssTextFonts';
+import cssDisplayPositioning from './css/CssDisplayPositioning';
+import cssFlexbox from './css/CssFlexbox';
+import cssGrid from './css/CssGrid';
+import cssResponsive from './css/CssResponsive';
+import cssAnimations from './css/CssAnimations';
+
 // Core Java - Basics
 import javaIntroduction from './corejava/basics/JavaIntroduction';
 import javaFeatures from './corejava/basics/JavaFeatures';
@@ -106,6 +133,7 @@ import servletLifecycle from './servlets/ServletLifecycle';
 import servletAPI from './servlets/ServletAPI';
 import servletConfig from './servlets/ServletConfig';
 import httpServletRequestResponse from './servlets/HttpServletRequestResponse';
+import servletFrontendIntegration from './servlets/ServletFrontendIntegration';
 import sessionManagement from './servlets/SessionManagement';
 import filtersListeners from './servlets/FiltersListeners';
 import servletAnnotations from './servlets/ServletAnnotations';
@@ -137,6 +165,68 @@ import hibernateRelationships from './hibernate/HibernateRelationships';
 import hibernateBatchProcessing from './hibernate/HibernateBatchProcessing';
 
 export const courseStructure = {
+  html: {
+    title: "HTML",
+    icon: "🌐",
+    color: "#E34F26",
+    sections: {
+      basics: {
+        title: "HTML Basics",
+        topics: [
+          htmlIntroduction,
+          htmlStructure,
+          htmlLinks,
+          htmlImages,
+          htmlLists
+        ]
+      },
+      advanced: {
+        title: "Advanced HTML",
+        topics: [
+          htmlTables,
+          htmlForms,
+          htmlSemanticElements,
+          htmlMedia,
+          htmlIframe,
+          htmlMarquee,
+          htmlDOM,
+          htmlBestPractices
+        ]
+      }
+    }
+  },
+  css: {
+    title: "CSS",
+    icon: "🎨",
+    color: "#264DE4",
+    sections: {
+      basics: {
+        title: "CSS Basics",
+        topics: [
+          cssIntroduction,
+          cssSelectors,
+          cssColorsBackgrounds,
+          cssBoxModel,
+          cssTextFonts
+        ]
+      },
+      layout: {
+        title: "Layout & Positioning",
+        topics: [
+          cssDisplayPositioning,
+          cssFlexbox,
+          cssGrid
+        ]
+      },
+      advanced: {
+        title: "Advanced CSS",
+        topics: [
+          cssResponsive,
+          cssAnimations
+        ]
+      }
+    }
+  },
   corejava: {
     title: "Core Java",
     icon: "☕",
@@ -369,6 +459,7 @@ export const courseStructure = {
         title: "Request & Response",
         topics: [
           httpServletRequestResponse,
+          servletFrontendIntegration,
           sessionManagement
         ]
       },

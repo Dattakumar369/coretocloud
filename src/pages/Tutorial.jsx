@@ -32,6 +32,9 @@ import { HierarchyDiagram, ConceptCube, ProcessCards, CodeFlowAnimation } from '
 import { ImageGif, ImageCard3D } from '../components/ImageGif';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import FAQSection from '../components/FAQSection';
+import InternalLinks from '../components/InternalLinks';
+import { generateSEOTitle } from '../utils/seoHelpers';
 
 function Tutorial() {
   const { topicId } = useParams();
@@ -338,7 +341,7 @@ function Tutorial() {
       {/* Header */}
       <div className="tutorial-header">
         <div className="tutorial-header-top">
-          <h1 className="tutorial-title">{currentTopic.title}</h1>
+          <h1 className="tutorial-title">{generateSEOTitle(currentTopic)}</h1>
           <button className="edit-tutorial-btn" onClick={handleEditClick}>
             <Edit3 size={16} />
             Edit Tutorial
@@ -374,6 +377,18 @@ function Tutorial() {
       {/* Content */}
       <div className="tutorial-content">
         {renderContent(currentTopic.content)}
+        
+        {/* Internal Links Section */}
+        <InternalLinks 
+          currentTopicId={topicId} 
+          courseTitle={currentTopic.courseTitle}
+        />
+        
+        {/* FAQ Section */}
+        <FAQSection 
+          topicId={topicId}
+          courseTitle={currentTopic.courseTitle}
+        />
       </div>
 
       {/* Code Example */}
