@@ -1,0 +1,39 @@
+// JDBC Topics
+import jdbcIntroduction from './JdbcIntroduction';
+import jdbcDrivers from './JdbcDrivers';
+import jdbcConnectionSteps from './JdbcConnectionSteps';
+import statementInterface from './StatementInterface';
+import preparedStatementInterface from './PreparedStatementInterface';
+import resultSetInterface from './ResultSetInterface';
+import crudOperations from './CrudOperations';
+import transactionManagement from './TransactionManagement';
+
+export const jdbcTopics = {
+  id: 'jdbc',
+  title: 'JDBC',
+  description: 'Java Database Connectivity - Connect Java applications with databases',
+  icon: '🗄️',
+  topics: [
+    jdbcIntroduction,
+    jdbcDrivers,
+    jdbcConnectionSteps,
+    statementInterface,
+    preparedStatementInterface,
+    resultSetInterface,
+    crudOperations,
+    transactionManagement
+  ]
+};
+
+export {
+  jdbcIntroduction,
+  jdbcDrivers,
+  jdbcConnectionSteps,
+  statementInterface,
+  preparedStatementInterface,
+  resultSetInterface,
+  crudOperations,
+  transactionManagement
+};
+
+
