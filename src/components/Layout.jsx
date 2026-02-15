@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Menu, X, ChevronDown, Plus, User, LogOut, BookOpen } from 'lucide-react';
 import { courseStructure, getAllTopics } from '../data';
 import { useAuth } from '../context/AuthContext';
@@ -17,6 +17,7 @@ function Layout() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [filteredTopics, setFilteredTopics] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { user, isLoggedIn, openLoginModal, logout } = useAuth();
   const { getAllContributions } = useContributions();
@@ -61,6 +62,16 @@ function Layout() {
   const handleCourseSelect = (courseKey) => {
     setActiveCourse(courseKey);
     setSearchQuery('');
+    
+    // Navigate to the first topic of the selected course
+    const course = courseStructure[courseKey];
+    if (course) {
+      const firstSection = Object.values(course.sections)[0];
+      if (firstSection && firstSection.topics.length > 0) {
+        const firstTopic = firstSection.topics[0];
+        navigate(`/tutorial/${firstTopic.id}`);
+      }
+    }
   };
 
   // Get user contributions

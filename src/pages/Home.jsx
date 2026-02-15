@@ -33,9 +33,11 @@ function Home() {
 
   const courseDescriptions = {
     corejava: 'Master the fundamentals - variables, OOP, collections, multithreading & more',
+    mysql: 'Learn MySQL database - DDL, DML, DQL, joins, stored procedures, triggers & more',
     jdbc: 'Connect Java applications to databases with JDBC and MySQL',
     servlets: 'Build dynamic web applications with Java Servlets',
-    jsp: 'Create powerful server-side web pages with JSP'
+    jsp: 'Create powerful server-side web pages with JSP',
+    hibernate: 'Master Hibernate ORM - mapping, relationships, caching, batch processing & more'
   };
 
   return (
