@@ -2713,6 +2713,30 @@ code {
 
 .sidebar-ad .adsense-container {
   margin: 0;
+  min-width: 250px;
+  width: 100%;
+}
+
+/* Ensure sidebar ad doesn't load when sidebar is hidden */
+.sidebar:not(.open) .sidebar-ad {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .sidebar-ad {
+    display: none;
+  }
+}
+
+/* Banner Ads */
+.top-banner-ad,
+.bottom-banner-ad {
+  width: 100%;
+  min-width: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
 }
 
 /* In-Content Ads */
@@ -2723,6 +2747,7 @@ code {
   align-items: center;
   padding: 1.5rem 0;
   width: 100%;
+  min-width: 1px;
 }
 
 .in-content-ad-unit {
