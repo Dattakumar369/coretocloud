@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ADSENSE_CONFIG, isAdSenseConfigured } from '../config/adsense';
+import { ADSENSE_CONFIG, isAdSenseConfigured, isValidAdSlot } from '../config/adsense';
 
 function AdSense({ 
   adSlot = '1234567890', 
@@ -30,7 +30,7 @@ function AdSense({
 
   // Use IntersectionObserver to only load ads when visible
   useEffect(() => {
-    if (!containerRef.current || !isAdSenseConfigured()) return;
+    if (!containerRef.current || !isAdSenseConfigured() || !isValidAdSlot(adSlot)) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,7 +58,7 @@ function AdSense({
 
   // Load ad only when container is ready and visible
   useEffect(() => {
-    if (!isVisible || !adRef.current || !window.adsbygoogle) return;
+    if (!isVisible || !adRef.current || !window.adsbygoogle || !isValidAdSlot(adSlot)) return;
     
     // Double-check container has width
     if (!checkContainerReady()) {
@@ -89,7 +89,7 @@ function AdSense({
 
   // Monitor ad loading status
   useEffect(() => {
-    if (!adRef.current || !isAdSenseConfigured()) return;
+    if (!adRef.current || !isAdSenseConfigured() || !isValidAdSlot(adSlot)) return;
 
     const checkAdStatus = () => {
       const status = adRef.current?.getAttribute('data-adsbygoogle-status');
@@ -138,6 +138,11 @@ function AdSense({
   // Don't render if AdSense is not configured
   if (!isAdSenseConfigured()) {
     return null; // Don't show placeholder in production
+  }
+
+  // Don't render if ad slot is invalid (placeholder)
+  if (!isValidAdSlot(adSlot)) {
+    return null; // Don't show ads with placeholder slots
   }
 
   // Hide container if ad failed to load (no empty space)
