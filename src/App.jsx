@@ -29,47 +29,34 @@ function AppWithTracking() {
     initGA();
   }, []);
 
-  // Handle redirects from 404.html
-  useEffect(() => {
-    // Check if we have a redirect path stored from 404.html
-    if (typeof sessionStorage !== 'undefined') {
-      const redirectPath = sessionStorage.getItem('redirectPath');
-      if (redirectPath) {
-        sessionStorage.removeItem('redirectPath');
-        // Navigate to the stored path
-        window.history.replaceState(null, null, redirectPath);
-      }
-    }
-  }, []);
-
   // Track page views on route changes
   usePageTracking();
 
   return (
     <Routes>
+      {/* Redirect old incorrect URLs to correct ones - must be before Layout route */}
+      <Route 
+        path="/tutorial/servlet-architecture" 
+        element={<Navigate to="/tutorial/servlet-introduction" replace />} 
+      />
+      <Route 
+        path="/tutorial/servlet-filter" 
+        element={<Navigate to="/tutorial/filters-listeners" replace />} 
+      />
+      <Route 
+        path="/tutorial/servlet-listener" 
+        element={<Navigate to="/tutorial/filters-listeners" replace />} 
+      />
+      <Route 
+        path="/tutorial/jdbc-architecture" 
+        element={<Navigate to="/tutorial/jdbc-introduction" replace />} 
+      />
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         {/* Redirect index.html to home */}
         <Route 
           path="index.html" 
           element={<Navigate to="/" replace />} 
-        />
-        {/* Redirect old incorrect URLs to correct ones */}
-        <Route 
-          path="tutorial/servlet-architecture" 
-          element={<Navigate to="/tutorial/servlet-introduction" replace />} 
-        />
-        <Route 
-          path="tutorial/servlet-filter" 
-          element={<Navigate to="/tutorial/filters-listeners" replace />} 
-        />
-        <Route 
-          path="tutorial/servlet-listener" 
-          element={<Navigate to="/tutorial/filters-listeners" replace />} 
-        />
-        <Route 
-          path="tutorial/jdbc-architecture" 
-          element={<Navigate to="/tutorial/jdbc-introduction" replace />} 
         />
         <Route path="tutorial/:topicId" element={<Tutorial />} />
         <Route path="privacy" element={<PrivacyPolicy />} />
